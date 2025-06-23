@@ -196,18 +196,30 @@ textarea {
     color: var(--orange-clr);
 }
 
-/* SIDEBAR ELEMENT */
-
 .navbar-nav li::after {
     content: none !important;
     display: none !important;
 }
 
-.navbar-nav .active {
-    border-right: 3px solid var(--orange-clr) !important;
+/* Item sidebar yang aktif tanpa submenu */
+.navbar-nav > li.active:not(.dropdown) > a {
+    background-color: var(--orange-clr-lt) !important;
+    color: var(--orange-clr) !important;
+    border-left: none !important;
+    /* border-radius: 0px !important; */
 }
 
-.dropdown-menu .active {
+.navbar-nav > li.active:not(.dropdown) > a .nav-link-icon h2 {
+    color: var(--orange-clr) !important;
+}
+
+/* Mengubah warna ikon dalam submenu aktif */
+.dropdown-menu .dropdown-item.active h2 {
+    color: var(--orange-clr) !important;
+}
+
+/* Submenu yang aktif */
+.dropdown-menu .dropdown-item.active {
     border-right: none !important;
     background-color: var(--orange-clr-lt) !important;
     color: var(--orange-clr) !important;
@@ -215,6 +227,20 @@ textarea {
 
 .datatable-dropdown {
     transform: translate(0px, 39px) !important;
+}
+
+@media (max-width: 991.98px) {
+    /* Ukuran tablet dan HP */
+
+    .dropdown-menu.show {
+        border-top-left-radius: 0.5rem !important;
+        border-bottom-left-radius: 0.5rem !important;
+    }
+}
+
+/* Menghapus background pada item utama yang memiliki submenu */
+.navbar-nav .active {
+    border-right: 3px solid var(--orange-clr) !important;
 }
 
 /* TIMER TODAY  */
