@@ -3,7 +3,7 @@
         <span class="avatar avatar-sm" style="background-image: url({{ auth()->user()->avatarUrl() }})"></span>
 
         <div class="d-none d-xl-block ps-2">
-            <div>{{ auth()->user()->name }}</div>
+            <div>{{ auth()->user()->username }}</div>
 
             <div class="mt-1 small text-muted">
                 {{ ucwords(str_replace('-', ' ', auth()->user()->role)) }}

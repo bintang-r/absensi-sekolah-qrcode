@@ -3,7 +3,8 @@
 return [
     'roles' => [
         'admin',
-        'user',
+        'siswa',
+        'guru',
     ],
 
     'secret_email' => [
