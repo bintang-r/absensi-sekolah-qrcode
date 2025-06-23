@@ -29,7 +29,7 @@ class Index extends Component
                 'required',
                 'unique:users,username,' . $this->userId,
                 'min:3',
-                'max:12',
+                'max:20',
                 'regex:/\w*$/',
             ],
             'surel' => [
@@ -75,7 +75,7 @@ class Index extends Component
                 }
 
                 $user->update([
-                    'avatar' => $this->avatar->store('avatar', 'public'),
+                    'avatar' => $this->avatar->store('avatars', 'public'),
                 ]);
             }
 
@@ -113,11 +113,9 @@ class Index extends Component
     public function mount()
     {
         $user = User::findOrFail(auth()->user()->id);
-
         $this->userId = $user->id;
         $this->username = $user->username;
         $this->surel = $user->email;
-
         $this->avatarUrl = $user->avatarUrl();
     }
 

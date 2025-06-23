@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,6 +13,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // delete old files and directories
+        File::deleteDirectory(public_path('storage/avatars'));
+        Storage::deleteDirectory('public/avatars');
+
+        // call the seeders
         $this->call([
             UserTableSeeder::class,
         ]);
