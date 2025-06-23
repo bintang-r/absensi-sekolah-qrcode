@@ -22,10 +22,12 @@
             </div>
         @enderror
 
-        <small class="text-muted">
+        @unless ($errors->has($name))
             @isset($optional)
-                Kosongkan jika tidak ingin mengubah
+                <small class="text-muted">
+                    {{ $optional }}
+                </small>
             @endisset
-        </small>
+        @endunless
     </div>
 </div>

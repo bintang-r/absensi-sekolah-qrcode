@@ -1,24 +1,19 @@
+@push('styles')
+    <style href="{{ asset('css/loading.css') }}"></style>
+@endpush
+
 <div class="d-print-none">
-    <div style="left:0;right:0" class="fixed-top top-0 d-flex justify-content-center mt-4">
-        @if (session('queue_alert_warning'))
-            <span class="px-3 py-2 border rounded-2 bg-orange-lt shadow" id="loading-indicator">
-                <i class="las la-volume-up me-2"></i> Pemanggilan antrian sedang digunakan.
-            </span>
-        @elseif (session('queue_alert_success'))
-            <span class="px-3 py-2 border rounded-2 bg-blue-lt shadow" id="loading-indicator">
-                <i class="las la-podcast me-2"></i> Pemanggilan Antrian.
-            </span>
-        @else
-            <span class="px-3 py-2 border rounded-2 bg-orange-lt shadow" id="loading-indicator" wire:loading.delay>
-                Memuat<span class="animated-dots"></span>
-            </span>
+    <div style="z-index: 9999; position: fixed; bottom: 20px; right: 20px;"
+        class="d-flex flex-column align-items-end gap-2">
 
-            <span class="px-3 py-2 border rounded-2 bg-red-lt shadow" id="loading-indicator" wire:offline>
-                <i class="las la-plane me-2"></i> Anda sedang offline.
-            </span>
-        @endif
+        <span id="loading-indicator" wire:loading.delay>
+            <i class="las la-sync-alt spin-animation btn btn-warning"></i>
+        </span>
+
+        <span class="btn btn-red" id="loading-indicator" wire:offline>
+            <i class="fs-1 las la-plane p-2"></i> Anda sedang offline.
+        </span>
     </div>
-
 
     @if (session('alert'))
         <div class="alert alert-{{ $type }} alert-dismissible bg-white" role="alert">

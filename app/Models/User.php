@@ -19,11 +19,14 @@ class User extends Authenticatable
     protected $fillable = [
         'force_logout',
         'username',
-        'status',
         'avatar',
-        'roles',
+        'role',
         'email',
         'password',
+        'email_verified_at',
+        'last_login_time',
+        'last_login_ip',
+        'last_seen_time',
     ];
 
     /**

@@ -20,16 +20,18 @@
                     <div class="text-muted">{{ auth()->user()->email ?? '-' }}</div>
 
                     <div class="mt-3">
-                        <span class="badge bg-green-lt">{{ auth()->user()->roles ?? '-' }}</span>
+                        <span class="badge bg-green-lt">{{ auth()->user()->role ?? '-' }}</span>
                     </div>
                 </div>
 
-                <div class="btn-group" role="group" aria-label="Basic example">
+                <div class="btn-group p-3" role="group" aria-label="Basic example">
                     <a href="{{ route('setting.profile.index') }}" class="btn btn-card py-3 btn-square">Profil</a>
+
                     <a href="{{ route('setting.account.index') }}" class="btn btn-card py-3 btn-square">Akun</a>
                 </div>
             </div>
         </div>
+
 
         <div class="col-md-6 col-xl-8">
             <div class="card">
