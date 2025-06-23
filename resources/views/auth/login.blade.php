@@ -1,15 +1,17 @@
 <x-layouts.auth title="Login">
     <div class="card card-md">
         <div class="card-body">
-            <h2 class="h2 text-center mb-4">Masuk Ke Aplikasi</h2>
-            <form action="{{ route('login') }}" method="POST" autocomplete="off">
+            <div class="text-center mb-3s">
+                <h2 class="h4 text-center mb-5 title-login">Selamat Datang 👋</h2>
+                <p>Masukkan data anda untuk masuk ke aplikasi.</p>
+            </div>
 
+            <form class="mt-5" action="{{ route('login') }}" method="POST" autocomplete="off">
                 @csrf
-
                 <div class="mb-3">
                     <label class="form-label">Alamat Surel (email)</label>
                     <input class="form-control" type="email" name="email" value="{{ old('email') }}"
-                        placeholder="contoh@email.com" required autofocus>
+                        placeholder="contoh@email.com" required>
                 </div>
 
                 <div class="mb-2">
@@ -27,10 +29,7 @@
                         </span>
                     </label>
 
-                    <div class="input-group input-group-flat">
-                        <input class="form-control" name="password" type="password" placeholder="******"
-                            autocomplete="current-password" required>
-                    </div>
+                    <input class="form-control" type="password" name="password" placeholder="************" required>
                 </div>
 
                 <div class="mb-2">
@@ -40,9 +39,8 @@
                     </label>
                 </div>
                 <div class="form-footer">
-                    <button type="submit" class="btn btn-primary w-100">Masuk</button>
+                    <button type="submit" class="btn btn-warning w-100">Masuk</button>
                 </div>
-
             </form>
         </div>
     </div>

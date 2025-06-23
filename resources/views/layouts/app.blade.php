@@ -6,7 +6,7 @@
     <div class="page">
         <x-backend.sidebar />
         <x-backend.header />
-        <x-backend.content :page-title="$pageTitle" :page-pretitle="$pagePretitle ?? null">
+        <x-backend.content :page-title="$pageTitle ?? null" :page-pretitle="$pagePretitle ?? null">
 
             <x-slot name="button">
                 {{ $button ?? '' }}
