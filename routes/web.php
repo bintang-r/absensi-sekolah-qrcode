@@ -48,6 +48,16 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
     });
 
     /**
+     * teacher / guru
+     */
+    Route::prefix('guru')->name('teacher.')->middleware('roles:admin')->group(function () {
+        Route::get('/',Teacher\Index::class)->name('index');
+        Route::get('/tambah', Teacher\Create::class)->name('create');
+        Route::get('/{id}/edit', Teacher\Edit::class)->name('edit');
+        Route::get('/{id}/detail', Teacher\Detail::class)->name('detail');
+    });
+
+    /**
      * beranda / home
      */
     Route::get('beranda', Home\Index::class)->name('home')

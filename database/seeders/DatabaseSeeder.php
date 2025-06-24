@@ -13,15 +13,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // delete old files and directories
-        File::deleteDirectory(public_path('storage/avatars'));
-        Storage::deleteDirectory('public/avatars');
+        $isDeleteFile = config('const.auto_delete_file');
+
+        if($isDeleteFile){
+            // delete old files and directories
+            File::deleteDirectory(public_path('storage/avatars'));
+            File::deleteDirectory(public_path('storage/student-photos'));
+
+            // delete old directories in storage
+            Storage::deleteDirectory('public/avatars');
+            Storage::deleteDirectory('public/student-photos');
+        }
 
         // call the seeders
         $this->call([
             UserTableSeeder::class,
             ClassRoomTableSeeder::class,
             SubjectStudyTableSeeder::class,
+            TeacherTableSeeder::class,
+            StudentTableSeeder::class,
         ]);
     }
 }

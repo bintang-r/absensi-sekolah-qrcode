@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Faker\Factory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -13,20 +12,16 @@ class ClassRoomTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Factory::create('id_ID');
+        $faker = \Faker\Factory::create('id_ID');
+        $listClass = config('const.class_room_examples');
 
-        $listClass = [
-            'I', 'II', 'III', 'IV', 'V', 'VI', 'VII',
-            'VIII', 'IX', 'X', 'XI', 'XII', 'XIII'
-        ];
-
-        $classRooms = [];
 
         $i = 0;
+        $classRooms = [];
         while (true) {
             $classRooms[] = [
-                'name_class' => $listClass[$i],
-                'description' => 'Kelas ' . $listClass[$i] . ' dengan total siswa ' . $faker->numberBetween(20, 40) . ' lokasi gedung ' . $faker->numberBetween(1, 3),
+                'name_class'    => $listClass[$i],
+                'description'   => 'Kelas ' . $listClass[$i] . ' dengan total siswa ' . $faker->numberBetween(20, 40) . ' lokasi gedung ' . $faker->numberBetween(1, 3),
                 'status_active' => $faker->boolean,
             ];
 

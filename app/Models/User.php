@@ -56,4 +56,13 @@ class User extends Authenticatable
             ? url('storage/' . $this->avatar)
             : 'https://gravatar.com/avatar/' . md5(strtolower(trim($this->email))) . '?s=1024';
     }
+
+    public function teacher(){
+        return $this->hasOne(Teacher::class, 'user_id', 'id')->withDefault();
+    }
+
+    public function setUsernameAttribute($value)
+    {
+        $this->attributes['username'] = ucwords(strtolower($value));
+    }
 }

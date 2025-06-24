@@ -40,6 +40,15 @@ return [
     ],
 
     [
+        'title' => 'Guru',
+        'icon' => 'user-tie',
+        'route-name' => 'teacher.index',
+        'is-active' => 'teacher*',
+        'description' => 'Melihat daftar guru.',
+        'roles' => ['admin'],
+    ],
+
+    [
         'title' => 'Pengaturan',
         'description' => 'Menampilkan pengaturan aplikasi.',
         'icon' => 'cog',

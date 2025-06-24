@@ -13,6 +13,19 @@ return new class extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
+            $table->string('name');
+            $table->string('sex');
+            $table->string('nip')->unique();
+            $table->string('nuptk')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('religion')->nullable();
+            $table->date('birth_date')->nullable();
+            $table->string('place_of_birth')->nullable();
+            $table->text('address')->nullable();
+            $table->string('postal_code')->nullable();
+            $table->date('date_joined')->nullable();
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }

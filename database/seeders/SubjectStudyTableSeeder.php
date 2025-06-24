@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Faker\Factory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -13,37 +12,15 @@ class SubjectStudyTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Factory::create('id_ID');
-        $subjectStudies = [];
-
-        $subjects = [
-            'Matematika',
-            'Bahasa Indonesia',
-            'Bahasa Inggris',
-            'Ilmu Pengetahuan Alam',
-            'Ilmu Pengetahuan Sosial',
-            'Pendidikan Kewarganegaraan',
-            'Pendidikan Agama',
-            'Seni Budaya',
-            'Pendidikan Jasmani',
-            'Fisika',
-            'Kimia',
-            'Biologi',
-            'Ekonomi',
-            'Geografi',
-            'Sejarah',
-            'Sosiologi',
-            'Teknologi Informasi',
-            'Prakarya',
-            'Bimbingan Konseling',
-            'Kewirausahaan'
-        ];
+        $faker = \Faker\Factory::create('id_ID');
+        $subjects = config('const.subject_study_examples');
 
         $i = 0;
+        $subjectStudies = [];
         while (true) {
             $subjectStudies[] = [
-                'name_subject' => $subjects[$i],
-                'description' => $subjects[$i] . ", dengan pertemuan 2 semester.",
+                'name_subject'  => $subjects[$i],
+                'description'   => $subjects[$i] . ", dengan pertemuan 2 semester.",
                 'status_active' => $faker->boolean(80),
             ];
 
