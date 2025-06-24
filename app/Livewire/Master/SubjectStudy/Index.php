@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Livewire\Master\ClassRoom;
+namespace App\Livewire\Master\SubjectStudy;
 
 use App\Livewire\Traits\DataTable\WithBulkActions;
 use App\Livewire\Traits\DataTable\WithCachedRows;
 use App\Livewire\Traits\DataTable\WithPerPagePagination;
 use App\Livewire\Traits\DataTable\WithSorting;
-use App\Models\ClassRoom;
+use App\Models\SubjectStudy;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -25,7 +24,7 @@ class Index extends Component
         'search' => '',
     ];
     // FORM DATA
-    public $namaKelas;
+    public $namaMataPelajaran;
     public $deskripsi;
     public $statusAktif = true;
 
@@ -34,18 +33,18 @@ class Index extends Component
     public $modalEdit = false;
 
     // IDENTITY
-    public $classRoomId;
+    public $subjectStudyId;
 
     // TOGGLE STATUS ACTIVE
     public function changeStatusActive($id){
-        $classRoom = ClassRoom::findOrFail($id);
-        $classRoom->status_active = !$classRoom->status_active;
-        $classRoom->save();
+        $subjectStudy = SubjectStudy::findOrFail($id);
+        $subjectStudy->status_active = !$subjectStudy->status_active;
+        $subjectStudy->save();
 
         session()->flash('alert', [
             'type' => 'success',
             'message' => 'Berhasil!',
-            'detail' => "Berhasil mengubah status aktif ruang kelas.",
+            'detail' => "Berhasil mengubah status aktif mata pelajaran.",
         ]);
 
         return redirect()->back();
@@ -63,11 +62,11 @@ class Index extends Component
 
     public function openModalEdit($id){
         $this->resetModal();
-        $classRoom = ClassRoom::findOrFail($id);
-        $this->classRoomId = $classRoom->id;
-        $this->namaKelas = $classRoom->name_class;
-        $this->deskripsi = $classRoom->description;
-        $this->statusAktif = $classRoom->status_active;
+        $subjectStudy = SubjectStudy::findOrFail($id);
+        $this->subjectStudyId = $subjectStudy->id;
+        $this->namaMataPelajaran = $subjectStudy->name_subject;
+        $this->deskripsi = $subjectStudy->description;
+        $this->statusAktif = $subjectStudy->status_active;
         $this->modalEdit = true;
     }
 
@@ -75,7 +74,7 @@ class Index extends Component
         $this->reset([
             'modalCreate',
             'modalEdit',
-            'namaKelas',
+            'namaMataPelajaran',
             'deskripsi',
             'statusAktif',
         ]);
@@ -84,10 +83,10 @@ class Index extends Component
     // DELETE SELECTED
     public function deleteSelected()
     {
-        $classRoom = ClassRoom::whereIn('id', $this->selected)->get();
-        $deleteCount = $classRoom->count();
+        $subjectStudy = SubjectStudy::whereIn('id', $this->selected)->get();
+        $deleteCount = $subjectStudy->count();
 
-        foreach ($classRoom as $data) {
+        foreach ($subjectStudy as $data) {
             $data->delete();
         }
 
@@ -96,7 +95,7 @@ class Index extends Component
         session()->flash('alert', [
             'type' => 'success',
             'message' => 'Berhasil!',
-            'detail' => "Berhasil menghapus $deleteCount data ruang kelas.",
+            'detail' => "Berhasil menghapus $deleteCount data mata pelajaran.",
         ]);
 
         return redirect()->back();
@@ -107,10 +106,10 @@ class Index extends Component
     #[Computed()]
     public function rows()
     {
-        $query = ClassRoom::query()
+        $query = SubjectStudy::query()
             ->when(!$this->sorts, fn($query) => $query->first())
             ->when($this->filters['search'], function ($query, $search) {
-                $query->where('name_class', 'LIKE', "%$search%");
+                $query->where('name_subject', 'LIKE', "%$search%");
             })->latest();
 
         return $this->applyPagination($query);
@@ -119,7 +118,7 @@ class Index extends Component
     // SAVE DATA
     public function save(){
         $this->validate([
-            'namaKelas' => ['required', 'string','min:2', 'max:255'],
+            'namaMataPelajaran' => ['required', 'string','min:2', 'max:255'],
             'deskripsi' => ['nullable', 'string', 'min:2'],
             'statusAktif' => ['boolean'],
         ]);
@@ -127,17 +126,17 @@ class Index extends Component
         try{
             DB::beginTransaction();
 
-            if($this->classRoomId){
-                $classRoom = ClassRoom::findOrFail($this->classRoomId);
+            if($this->subjectStudyId){
+                $subjectStudy = SubjectStudy::findOrFail($this->subjectStudyId);
 
-                $classRoom->update([
-                    'name_class' => $this->namaKelas,
+                $subjectStudy->update([
+                    'name_subject' => $this->namaMataPelajaran,
                     'description' => $this->deskripsi,
                     'status_active' => $this->statusAktif,
                 ]);
             }else{
-                ClassRoom::create([
-                    'name_class' => $this->namaKelas,
+                SubjectStudy::create([
+                    'name_subject' => $this->namaMataPelajaran,
                     'description' => $this->deskripsi,
                     'status_active' => $this->statusAktif,
                 ]);
@@ -150,15 +149,15 @@ class Index extends Component
             logger()->error(
                 '[pengguna] ' .
                     auth()->user()->username .
-                    ' gagal menambahkan ruang kelas',
+                    ' gagal menambahkan mata pelajaran',
                 [$e->getMessage()]
             );
 
 
-            if($this->classRoomId){
-                $message = "Gagal menyunting data ruang kelas.";
+            if($this->subjectStudyId){
+                $message = "Gagal menyunting data mata pelajaran.";
             }else{
-                $message = "Gagal menambahkan data ruang kelas.";
+                $message = "Gagal menambahkan data mata pelajaran.";
             }
 
             session()->flash('alert', [
@@ -170,10 +169,10 @@ class Index extends Component
             return redirect()->back();
         }
 
-        if($this->classRoomId){
-            $message = "Berhasil menyunting data ruang kelas.";
+        if($this->subjectStudyId){
+            $message = "Berhasil menyunting data mata pelajaran.";
         }else{
-            $message = "Berhasil menambahkan data ruang kelas.";
+            $message = "Berhasil menambahkan data mata pelajaran.";
         }
 
         session()->flash('alert', [
@@ -182,13 +181,13 @@ class Index extends Component
             'detail' => $message,
         ]);
 
-        return redirect()->route('master.classroom.index');
+        return redirect()->route('master.subject-study.index');
     }
 
     #[Computed()]
     public function allData()
     {
-        return ClassRoom::all();
+        return SubjectStudy::all();
     }
 
     public function updatedFilters()
@@ -209,6 +208,6 @@ class Index extends Component
 
     public function render()
     {
-        return view('livewire.master.class-room.index');
+        return view('livewire.master.subject-study.index');
     }
 }

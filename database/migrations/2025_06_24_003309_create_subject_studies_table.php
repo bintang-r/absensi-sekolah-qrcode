@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('subject_studies', function (Blueprint $table) {
             $table->id();
+            $table->string('name_subject');
+            $table->text('description')->nullable();
+            $table->boolean('status_active')->default(true)->nullable();
             $table->timestamps();
         });
     }

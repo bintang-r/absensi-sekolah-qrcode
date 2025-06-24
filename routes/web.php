@@ -38,6 +38,13 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
         Route::prefix('ruang-kelas')->name('classroom.')->middleware('roles:admin')->group(function(){
             Route::get('/', ClassRoom\Index::class)->name('index');
         });
+
+        /**
+         * subject study / mata pelajaran
+         */
+        Route::prefix('mata-pelajaran')->name('subject-study.')->middleware('roles:admin')->group(function(){
+            Route::get('/', SubjectStudy\Index::class)->name('index');
+        });
     });
 
     /**

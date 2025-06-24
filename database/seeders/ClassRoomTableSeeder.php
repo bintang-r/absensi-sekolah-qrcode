@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Faker\Factory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -23,16 +22,21 @@ class ClassRoomTableSeeder extends Seeder
 
         $classRooms = [];
 
-        for ($i = 1; $i <= count($listClass); $i++) {
+        $i = 0;
+        while (true) {
             $classRooms[] = [
-                'name_class' => $listClass[$i - 1],
-                'description' => 'Kelas ' . $listClass[$i - 1],
+                'name_class' => $listClass[$i],
+                'description' => 'Kelas ' . $listClass[$i] . ' dengan total siswa ' . $faker->numberBetween(20, 40) . ' lokasi gedung ' . $faker->numberBetween(1, 3),
                 'status_active' => $faker->boolean,
             ];
+
+            $i++;
+
+            if (($i + 1) >= count($listClass)) {
+                break;
+            }
         }
 
-        foreach ($classRooms as $classRoom) {
-            DB::table('class_rooms')->insert($classRoom);
-        }
+        DB::table('class_rooms')->insert($classRooms);
     }
 }

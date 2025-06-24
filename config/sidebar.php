@@ -30,6 +30,12 @@ return [
                 'route-name' => 'master.classroom.index',
                 'is-active' => 'master.classroom*',
             ],
+            [
+                'title' => 'Mata Pelajaran',
+                'description' => 'Melihat daftar ruang kelas.',
+                'route-name' => 'master.subject-study.index',
+                'is-active' => 'master.subject-study*',
+            ],
         ],
     ],
 
