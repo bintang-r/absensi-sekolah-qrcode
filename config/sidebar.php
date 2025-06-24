@@ -11,6 +11,23 @@ return [
     ],
 
     [
+        'title' => 'Master',
+        'description' => 'Menampilkan data master.',
+        'icon' => 'database',
+        'route-name' => 'master.admin.index',
+        'is-active' => 'master*',
+        'roles' => ['admin'],
+        'sub-menus' => [
+            [
+                'title' => 'Admin',
+                'description' => 'Melihat daftar admin.',
+                'route-name' => 'master.admin.index',
+                'is-active' => 'master.admin*',
+            ],
+        ],
+    ],
+
+    [
         'title' => 'Pengaturan',
         'description' => 'Menampilkan pengaturan aplikasi.',
         'icon' => 'cog',

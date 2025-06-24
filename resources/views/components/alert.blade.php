@@ -1,14 +1,29 @@
 @push('styles')
-    <style href="{{ asset('css/loading.css') }}"></style>
+    <style>
+        .spin-animation {
+            display: inline-block;
+            animation: spin 1s linear infinite;
+            font-size: 2.5rem;
+            /* Membesarkan ikon */
+            font-weight: bold;
+            /* Membuat ikon lebih bold */
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
 @endpush
 
 <div class="d-print-none">
     <div style="z-index: 9999; position: fixed; bottom: 20px; right: 20px;"
         class="d-flex flex-column align-items-end gap-2">
 
-        <span id="loading-indicator" wire:loading.delay>
-            <i class="las la-sync-alt spin-animation btn btn-warning"></i>
-        </span>
+        <div class="btn btn-orange" id="loading-indicator" wire:loading.delay>
+            <i class="las la-sync-alt spin-animation"></i>
+        </div>
 
         <span class="btn btn-red" id="loading-indicator" wire:offline>
             <i class="fs-1 las la-plane p-2"></i> Anda sedang offline.
