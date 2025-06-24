@@ -11,7 +11,8 @@
             </span>
         @endisset
 
-        <textarea class="form-control {{ $formControlClass ?? '' }} @error($name) is-invalid @enderror" id="{{ $name }}"
+        <textarea style="{{ $style ?? 'height: 200px;' }}"
+            class="form-control {{ $formControlClass ?? '' }} @error($name) is-invalid @enderror" id="{{ $name }}"
             name="{{ $name }}" rows="{{ $rows ?? '5' }}" {{ $attributes }}></textarea>
 
         @error($name)

@@ -65,7 +65,7 @@ class Create extends Component
                 'email_verified_at' => now(),
             ]);
 
-            Teacher::create([
+            $teacher = Teacher::create([
                 'user_id'           => $user->id,
                 'name'              => $this->nama,
                 'sex'               => $this->jenisKelamin,
@@ -78,8 +78,14 @@ class Create extends Component
                 'address'           => $this->alamat,
                 'postal_code'       => $this->kodePos,
                 'date_joined'       => $this->tanggalBergabung,
-                'photo'             => $this->avatar ? $this->avatar->store('avatars', 'public') : null,
+                'photo'             => $this->avatar ? $this->avatar->store('student-photos', 'public') : null,
             ]);
+
+            if($teacher->photo){
+                $user->update([
+                    'avatar' => $teacher->photo,
+                ]);
+            }
 
             DB::commit();
         }catch(Exception $e){

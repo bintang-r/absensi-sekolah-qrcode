@@ -30,7 +30,7 @@ class TeacherTableSeeder extends Seeder
                 'email'             => $faker->unique()->safeEmail,
                 'email_verified_at' => now(),
                 'password'          => bcrypt('teacher123'),
-                'role'              => 'teacher',
+                'role'              => 'guru',
             ];
 
             $teachers[] = [

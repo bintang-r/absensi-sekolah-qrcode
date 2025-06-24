@@ -87,17 +87,20 @@ class Edit extends Component
                 'address'           => $this->alamat,
                 'postal_code'       => $this->kodePos,
                 'date_joined'       => $this->tanggalBergabung,
-                'photo'             => $this->avatar ? $this->avatar->store('avatars', 'public') : null,
             ]);
 
             if ($this->avatar) {
                 if($teacher->photo) {
                     Storage::disk('public')->delete($teacher->photo);
-                }
 
-                $user->update([
-                    'avatar' => $this->avatar->store('avatars', 'public'),
-                ]);
+                    $teacher->update([
+                        'photo' => $this->avatar ? $this->avatar->store('student-photos', 'public') : null,
+                    ]);
+
+                    $user->update([
+                        'avatar' => $teacher->photo,
+                    ]);
+                }
             }
 
             DB::commit();

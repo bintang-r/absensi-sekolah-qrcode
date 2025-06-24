@@ -16,11 +16,21 @@ class StudentTableSeeder extends Seeder
         $religions = config('const.religions');
 
         $i = 1;
+        $limit = 50;
         $students = [];
+        $users = [];
         while(true){
             $sex = $faker->randomElement(config('const.sex'));
             $name = $faker->name($sex == 'laki-laki' ? 'male' : 'female');
             $callName = strtolower(explode(' ', trim($name))[0]);
+
+            $users[] = [
+                'username' => $name,
+                'email'    => $callName . rand($i, $i * (1-$i)) . '@example.com',
+                'email_verified_at' => now(),
+                'password' => bcrypt('student123'),
+                'role'     => 'siswa',
+            ];
 
             $students[] = [
                 'full_name'      => $name,
@@ -43,7 +53,26 @@ class StudentTableSeeder extends Seeder
 
             $i++;
 
-            if($i >= 50){
+            if($i >= $limit){
+                break;
+            }
+        }
+
+        DB::table('users')->insert($users);
+
+        $userIds = DB::table('users')
+            ->orderBy('id', 'desc')
+            ->take($limit)->pluck('id')
+            ->reverse()
+            ->values();
+
+        $j = 0;
+        while(true){
+            $students[$j]['user_id'] = $userIds[$j];
+
+            $j++;
+
+            if($j >= count($students)) {
                 break;
             }
         }
