@@ -66,19 +66,21 @@
                 <tbody>
                     @if ($selectPage)
                         <tr>
-                            <td colspan="10" class="bg-green-lt">
+                            <td colspan="10" class="bg-orange-lt rounded-0">
                                 @if (!$selectAll)
-                                    <div class="text-green">
-                                        <span>Anda telah memilih <strong>{{ $this->rows->total() }}</strong> user,
+                                    <div class="text-orange">
+                                        <span>Anda telah memilih <strong>{{ $this->rows->total() }}</strong> admin,
                                             apakah
                                             Anda mau memilih semua <strong>{{ $this->rows->total() }}</strong>
-                                            user?</span>
+                                            admin?</span>
 
-                                        <button wire:click="selectedAll" class="btn ms-2">Pilih Semua</button>
+                                        <button wire:click="selectedAll" class="btn btn-sm ms-2">
+                                            Pilih Semua Data Admin
+                                        </button>
                                     </div>
                                 @else
                                     <span class="text-pink">Anda sekarang memilih semua
-                                        <strong>{{ count($this->selected) }}</strong> user.
+                                        <strong>{{ count($this->selected) }}</strong> admin.
                                     </span>
                                 @endif
                             </td>

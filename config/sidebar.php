@@ -24,6 +24,12 @@ return [
                 'route-name' => 'master.admin.index',
                 'is-active' => 'master.admin*',
             ],
+            [
+                'title' => 'Ruang Kelas',
+                'description' => 'Melihat daftar ruang kelas.',
+                'route-name' => 'master.classroom.index',
+                'is-active' => 'master.classroom*',
+            ],
         ],
     ],
 

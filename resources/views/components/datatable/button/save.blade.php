@@ -1,4 +1,4 @@
-<button type="submit" class="btn btn-primary {{ $class ?? '' }}" wire:loading.attr="disabled">
+<button type="submit" class="btn btn-blue {{ $class ?? '' }}" wire:loading.attr="disabled">
     <span wire:loading.remove wire:target="{{ $target }}">{{ $name ?? 'Simpan' }}</span>
 
     <span wire:loading wire:target="{{ $target }}">Memuat</span>

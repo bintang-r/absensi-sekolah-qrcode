@@ -26,10 +26,17 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
         /**
          * admin
          */
-        Route::prefix('admin')->name('admin.')->group(function () {
+        Route::prefix('admin')->name('admin.')->middleware('roles:admin')->group(function () {
             Route::get('/', Admin\Index::class)->name('index');
             Route::get('/tambah', Admin\Create::class)->name('create');
             Route::get('/{id}/edit', Admin\Edit::class)->name('edit');
+        });
+
+        /**
+         * class room / ruang kelas
+         */
+        Route::prefix('ruang-kelas')->name('classroom.')->middleware('roles:admin')->group(function(){
+            Route::get('/', ClassRoom\Index::class)->name('index');
         });
     });
 

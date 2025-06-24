@@ -9,6 +9,26 @@
 
     --black-clr: oklch(0.141 0.005 285.823);
     --black-clr-lt: oklch(0.21 0.006 285.885);
+
+    --blue-clr: #135581;
+    --blue-clr2: #266fa3;
+    --blue-clr-lt: #e6f2f9;
+
+    --red-clr: #e62222;
+    --red-clr2: #be0404;
+    --red-clr-lt: #ffe6e6;
+
+    --green-clr: #4caf50;
+    --green-clr-lt: #e6f7e6;
+
+    --gray-clr: #f5f5f5;
+    --gray-clr-lt: #f9f9f9;
+
+    --purple-clr: #6a1b9a;
+    --purple-clr-lt: #f3e5f5;
+
+    --yellow-clr: #ffeb3b;
+    --yellow-clr-lt: #fff9c4;
 }
 
 body {
@@ -50,15 +70,6 @@ body {
     background-color: var(--orange-clr);
 }
 
-.btn-primary {
-    color: white;
-    background-color: var(--black-clr);
-}
-
-.form-label-description a {
-    color: var(--orange-clr);
-}
-
 .btn-warning:hover,
 .btn-warning:disabled,
 .btn-warning:checked,
@@ -74,6 +85,11 @@ body {
     box-shadow: none;
 }
 
+.btn-primary {
+    color: white;
+    background-color: var(--black-clr);
+}
+
 .btn-primary:hover,
 .btn-primary:disabled,
 .btn-primary:checked,
@@ -84,6 +100,46 @@ body {
     color: white;
     background-color: var(--black-clr);
     border-color: var(--black-clr);
+    opacity: 0.8;
+    outline: none;
+    box-shadow: none;
+}
+
+.btn-blue {
+    color: white;
+    background-color: var(--blue-clr);
+}
+
+.btn-blue:hover,
+.btn-blue:disabled,
+.btn-blue:checked,
+.btn-blue:target,
+.btn-blue:focus,
+.btn-blue:active,
+.btn-blue:not(:disabled):active {
+    color: white;
+    background-color: var(--blue-clr2);
+    border-color: var(--blue-clr-lt);
+    opacity: 0.8;
+    outline: none;
+    box-shadow: none;
+}
+
+.btn-red {
+    color: white;
+    background-color: var(--red-clr);
+}
+
+.btn-red:hover,
+.btn-red:disabled,
+.btn-red:checked,
+.btn-red:target,
+.btn-red:focus,
+.btn-red:active,
+.btn-red:not(:disabled):active {
+    color: white;
+    background-color: var(--red-clr2);
+    border-color: var(--red-clr-lt);
     opacity: 0.8;
     outline: none;
     box-shadow: none;
@@ -130,6 +186,10 @@ body {
 
 /* INPUT ELEMENT */
 
+.form-label-description a {
+    color: var(--blue-clr);
+}
+
 .form-control,
 .form-select {
     border-radius: 8px;
@@ -141,8 +201,8 @@ textarea {
 
 .form-control:active,
 .form-select:active {
-    outline: var(--orange-clr-lt);
-    border: var(--orange-clr);
+    outline: var(--blue-clr-lt);
+    border: var(--blue-clr);
 }
 
 .form-control,
@@ -160,8 +220,8 @@ textarea {
 .form-select:focus,
 .form-select:active {
     outline: none;
-    border: 2px solid rgba(255, 165, 0, 0.85);
-    box-shadow: 0 0 5px rgba(255, 165, 0, 0.7);
+    border: 0.1px solid rgba(19, 85, 129, 0.3);
+    box-shadow: 0 0 3px rgba(19, 85, 129, 0.7);
 }
 
 .form-control:disabled,
@@ -193,7 +253,7 @@ textarea {
 }
 
 .toggle-password:hover {
-    color: var(--orange-clr);
+    color: var(--blue-clr);
 }
 
 .navbar-nav li::after {
@@ -203,26 +263,26 @@ textarea {
 
 /* Item sidebar yang aktif tanpa submenu */
 .navbar-nav > li.active:not(.dropdown) > a {
-    background-color: var(--orange-clr-lt) !important;
-    color: var(--orange-clr) !important;
+    background-color: var(--blue-clr-lt) !important;
+    color: var(--blue-clr) !important;
     border-left: none !important;
     /* border-radius: 0px !important; */
 }
 
 .navbar-nav > li.active:not(.dropdown) > a .nav-link-icon h2 {
-    color: var(--orange-clr) !important;
+    color: var(--blue-clr) !important;
 }
 
 /* Mengubah warna ikon dalam submenu aktif */
 .dropdown-menu .dropdown-item.active h2 {
-    color: var(--orange-clr) !important;
+    color: var(--blue-clr) !important;
 }
 
 /* Submenu yang aktif */
 .dropdown-menu .dropdown-item.active {
     border-right: none !important;
-    background-color: var(--orange-clr-lt) !important;
-    color: var(--orange-clr) !important;
+    background-color: var(--blue-clr-lt) !important;
+    color: var(--blue-clr) !important;
 }
 
 .datatable-dropdown {
@@ -240,16 +300,16 @@ textarea {
 
 /* Menghapus background pada item utama yang memiliki submenu */
 .navbar-nav .active {
-    border-right: 3px solid var(--orange-clr) !important;
+    border-right: 3px solid var(--blue-clr) !important;
 }
 
 /* TIMER TODAY  */
 
 #elementTime {
-    background-color: var(--orange-clr-lt);
+    background-color: var(--blue-clr-lt);
     padding: 4px 10px;
     border-radius: 10px;
-    color: var(--orange-clr) !important;
+    color: var(--blue-clr) !important;
 }
 
 /* AUTHENTICATION ELEMENT */

@@ -39,7 +39,7 @@
                     </label>
                 </div>
                 <div class="form-footer">
-                    <button type="submit" class="btn btn-warning w-100">Masuk</button>
+                    <button type="submit" class="btn btn-blue w-100">Masuk</button>
                 </div>
             </form>
         </div>

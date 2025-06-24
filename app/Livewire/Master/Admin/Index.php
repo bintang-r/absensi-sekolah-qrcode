@@ -21,7 +21,6 @@ class Index extends Component
 
     public $filters = [
         'search' => '',
-        'roles' => '',
     ];
 
     public function deleteSelected()
