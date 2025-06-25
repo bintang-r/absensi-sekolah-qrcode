@@ -11,6 +11,7 @@ class Student extends Model
 
     protected $fillable = [
         'user_id',
+        'class_room_id',
         'full_name',
         'call_name',
         'sex',
@@ -32,8 +33,15 @@ class Student extends Model
 
     protected $casts = [
         'birth_date' => 'date',
-        'admission_year' => 'year',
     ];
+
+    public function class_room(){
+        return $this->belongsTo(ClassRoom::class,'class_room_id','id')->withDefault();
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class,'user_id','id')->withDefault();
+    }
 
     public function getBirthDateAttribute($value)
     {

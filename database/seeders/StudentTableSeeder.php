@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ClassRoom;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -14,6 +15,7 @@ class StudentTableSeeder extends Seeder
     {
         $faker = \Faker\Factory::create('id_ID');
         $religions = config('const.religions');
+        $classRoomIds = ClassRoom::pluck('id')->toArray();
 
         $i = 1;
         $limit = 50;
@@ -33,6 +35,7 @@ class StudentTableSeeder extends Seeder
             ];
 
             $students[] = [
+                'class_room_id'  => $faker->randomElement($classRoomIds),
                 'full_name'      => $name,
                 'call_name'      => $callName,
                 'sex'            => $sex,

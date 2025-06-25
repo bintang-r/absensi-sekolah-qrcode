@@ -58,6 +58,16 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
     });
 
     /**
+     * student / student
+     */
+    Route::prefix('siswa')->name('student.')->middleware('roles:admin')->group(function () {
+        Route::get('/',Student\Index::class)->name('index');
+        Route::get('/tambah', Student\Create::class)->name('create');
+        Route::get('/{id}/edit', Student\Edit::class)->name('edit');
+        Route::get('/{id}/detail', Student\Detail::class)->name('detail');
+    });
+
+    /**
      * beranda / home
      */
     Route::get('beranda', Home\Index::class)->name('home')
