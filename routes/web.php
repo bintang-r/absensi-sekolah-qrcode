@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CetakPdfController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::redirect('/', '/login');
+
+/**
+ * cetak pdf
+ */
+Route::middleware('auth','verified','force.logout')->prefix('cetak-pdf')->name('print-pdf.')->group(function(){
+    Route::get('/kartu', [CetakPdfController::class,'card'])->middleware('roles:admin')->name('card');
+});
 
 Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')->group(function () {
 
@@ -65,6 +73,13 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
         Route::get('/tambah', Student\Create::class)->name('create');
         Route::get('/{id}/edit', Student\Edit::class)->name('edit');
         Route::get('/{id}/detail', Student\Detail::class)->name('detail');
+    });
+
+    /**
+     * qrcode / qrcode
+     */
+    Route::prefix('qr-code')->name('qrcode.')->middleware('roles:admin')->group(function(){
+        Route::get('/', Qrcode\Index::class)->name('index');
     });
 
     /**

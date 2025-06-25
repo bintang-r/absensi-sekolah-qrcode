@@ -17,22 +17,49 @@ class StudentTableSeeder extends Seeder
         $religions = config('const.religions');
         $classRoomIds = ClassRoom::pluck('id')->toArray();
 
+        // Path ke file example
+        $exampleLatarMerahCewek = public_path('static/ryoogen/example/latar-merah-cewek.jpg');
+        $exampleLatarMerahCowok = public_path('static/ryoogen/example/latar-merah-cowok.jpeg');
+
         $i = 1;
         $limit = 50;
         $students = [];
         $users = [];
-        while(true){
+
+        // Pastikan direktori storage/student-photos ada
+        $storagePath = storage_path('app/public/student-photos');
+        if (!file_exists($storagePath)) {
+            mkdir($storagePath, 0777, true);
+        }
+
+        while (true) {
             $sex = $faker->randomElement(config('const.sex'));
             $name = $faker->name($sex == 'laki-laki' ? 'male' : 'female');
             $callName = strtolower(explode(' ', trim($name))[0]);
 
             $users[] = [
                 'username' => $name,
-                'email'    => $callName . rand($i, $i * (1-$i)) . '@example.com',
+                'email'    => $callName . rand($i, $i * (1 - $i)) . '@example.com',
                 'email_verified_at' => now(),
                 'password' => bcrypt('student123'),
                 'role'     => 'siswa',
             ];
+
+            // Tentukan file foto berdasarkan jenis kelamin
+            if ($sex == 'laki-laki') {
+                $sourcePhoto = $exampleLatarMerahCowok;
+                $extension = '.jpeg';
+            } else {
+                $sourcePhoto = $exampleLatarMerahCewek;
+                $extension = '.jpg';
+            }
+
+            $photoFileName = 'student_' . $i . '_' . time() . $extension;
+            $destinationRelativePath = 'student-photos/' . $photoFileName;
+            $destinationFullPath = $storagePath . '/' . $photoFileName;
+
+            // Copy file ke storage/student-photos menggunakan move (simulasi store)
+            copy($sourcePhoto, $destinationFullPath);
 
             $students[] = [
                 'class_room_id'  => $faker->randomElement($classRoomIds),
@@ -52,11 +79,12 @@ class StudentTableSeeder extends Seeder
                 'mother_name'    => $faker->name('female'),
                 'father_job'     => $faker->jobTitle,
                 'mother_job'     => $faker->jobTitle,
+                'photo'          => $destinationRelativePath, // hanya student-photos/xxx
             ];
 
             $i++;
 
-            if($i >= $limit){
+            if ($i >= $limit) {
                 break;
             }
         }
@@ -70,12 +98,12 @@ class StudentTableSeeder extends Seeder
             ->values();
 
         $j = 0;
-        while(true){
+        while (true) {
             $students[$j]['user_id'] = $userIds[$j];
 
             $j++;
 
-            if($j >= count($students)) {
+            if ($j >= count($students)) {
                 break;
             }
         }

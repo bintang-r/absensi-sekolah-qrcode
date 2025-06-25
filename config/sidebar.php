@@ -58,6 +58,15 @@ return [
     ],
 
     [
+        'title' => 'Qr Code',
+        'icon' => 'qrcode',
+        'route-name' => 'qrcode.index',
+        'is-active' => 'qrcode*',
+        'description' => 'Melihat daftar qr code.',
+        'roles' => ['admin'],
+    ],
+
+    [
         'title' => 'Pengaturan',
         'description' => 'Menampilkan pengaturan aplikasi.',
         'icon' => 'cog',

@@ -100,7 +100,7 @@ class Create extends Component
                 'mother_name' => $this->namaIbu,
                 'father_job' => $this->pekerjaanAyah,
                 'mother_job' => $this->pekerjaanIbu,
-                'photo' => $this->fotoProfil ? $this->fotoProfil->store('students-photos','public') : null,
+                'photo' => $this->fotoProfil ? $this->fotoProfil->store('student-photos','public') : null,
             ]);
 
             DB::commit();
