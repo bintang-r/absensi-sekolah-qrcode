@@ -32,6 +32,15 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
         Route::redirect('/', 'master/admin');
 
         /**
+         * class schedule / jadwal kelas
+         */
+        Route::prefix('jadwal-kelas')->name('class-schedule.')->middleware('roles:admin')->group(function(){
+            Route::get('/', ClassSchedule\Index::class)->name('index');
+            Route::get('/tambah', ClassSchedule\Create::class)->name('create');
+            Route::get('/sunting/{id}', ClassSchedule\Edit::class)->name('edit');
+        });
+
+        /**
          * admin
          */
         Route::prefix('admin')->name('admin.')->middleware('roles:admin')->group(function () {

@@ -31,6 +31,12 @@ return [
                 'is-active' => 'master.classroom*',
             ],
             [
+                'title' => 'Jadwal Kelas',
+                'description' => 'Melihat jadwal kelas.',
+                'route-name' => 'master.class-schedule.index',
+                'is-active' => 'master.class-schedule*',
+            ],
+            [
                 'title' => 'Mata Pelajaran',
                 'description' => 'Melihat daftar ruang kelas.',
                 'route-name' => 'master.subject-study.index',

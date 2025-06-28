@@ -29,7 +29,7 @@ class ClassSchedule extends Model
         'end_time' => 'datetime:H:i',
     ];
 
-    public function classRoom()
+    public function class_room()
     {
         return $this->belongsTo(ClassRoom::class)->withDefault();
     }
@@ -39,7 +39,7 @@ class ClassSchedule extends Model
         return $this->belongsTo(Teacher::class)->withDefault();
     }
 
-    public function subjectStudy()
+    public function subject_study()
     {
         return $this->belongsTo(SubjectStudy::class)->withDefault();
     }
