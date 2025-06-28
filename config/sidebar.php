@@ -49,6 +49,15 @@ return [
     ],
 
     [
+        'title' => 'Guru Mata Pelajaran',
+        'icon' => 'chalkboard-teacher',
+        'route-name' => 'subject-teacher.index',
+        'is-active' => 'subject-teacher*',
+        'description' => 'Melihat mata pelajaran guru.',
+        'roles' => ['admin'],
+    ],
+
+    [
         'title' => 'Siswa',
         'icon' => 'graduation-cap',
         'route-name' => 'student.index',

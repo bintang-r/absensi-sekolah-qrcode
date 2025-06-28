@@ -66,6 +66,13 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
     });
 
     /**
+     * teacher subject / guru mata pelajaran
+     */
+    Route::prefix('mata-pelajaran-guru')->name('subject-teacher.')->middleware('roles:admin')->group(function(){
+        Route::get('/', TeacherSubject\Index::class)->name('index');
+    });
+
+    /**
      * student / student
      */
     Route::prefix('siswa')->name('student.')->middleware('roles:admin')->group(function () {

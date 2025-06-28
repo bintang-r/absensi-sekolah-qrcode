@@ -13,6 +13,7 @@ class Teacher extends Model
 
     protected $fillable = [
         'user_id',
+        'subject_study_id',
         'name',
         'sex',
         'nip',
@@ -31,6 +32,14 @@ class Teacher extends Model
         'birth_date' => 'date',
         'admission_year' => 'year',
     ];
+
+    public function subject_study(){
+        return $this->belongsTo(SubjectStudy::class,'subject_study_id','id')->withDefault();
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class,'user_id','id')->withDefault();
+    }
 
     public function getBirthDateAttribute($value)
     {
@@ -51,9 +60,5 @@ class Teacher extends Model
         return $this->photo
             ? asset('storage/' . $this->photo)
             : asset('static/ryoogen/default/NO-IMAGE.png');
-    }
-
-    public function user(){
-        return $this->belongsTo(User::class,'user_id','id')->withDefault();
     }
 }
