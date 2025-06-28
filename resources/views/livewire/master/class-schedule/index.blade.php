@@ -13,7 +13,31 @@
 
     <x-modal.delete-confirmation />
 
-    <div class="bg-blue-lt mb-3 card px-2">
+    <div class="row mb-3 align-items-center justify-content-between">
+        <div class="col-12 col-lg-8 d-flex align-self-center">
+            <div>
+                <x-datatable.search placeholder="Cari nama kelas/guru/mapel..." />
+            </div>
+        </div>
+        <div class="col-auto ms-auto d-flex mt-lg-0 mt-3">
+            <x-datatable.items-per-page />
+
+            <x-datatable.bulk.dropdown>
+                <div class="dropdown-menu dropdown-menu-end datatable-dropdown">
+                    <button data-bs-toggle="modal" data-bs-target="#delete-confirmation" class="dropdown-item"
+                        type="button">
+                        <i class="las la-trash me-3"></i>
+
+                        <span>Hapus</span>
+                    </button>
+                </div>
+            </x-datatable.bulk.dropdown>
+
+            <button wire:click="muatUlang" class="btn py-1 ms-2"><span class="las la-redo-alt fs-1"></span></button>
+        </div>
+    </div>
+
+    <div class="open-filter mb-3 card px-2">
         <div class="card-body">
             <div class="row">
                 <div class="col-12 col-lg-6">
@@ -43,31 +67,6 @@
                         label="Jam Akhir" />
                 </div>
             </div>
-        </div>
-    </div>
-
-
-    <div class="row mb-3 align-items-center justify-content-between">
-        <div class="col-12 col-lg-8 d-flex align-self-center">
-            <div>
-                <x-datatable.search placeholder="Cari nama kelas/guru/mapel..." />
-            </div>
-        </div>
-        <div class="col-auto ms-auto d-flex mt-lg-0 mt-3">
-            <x-datatable.items-per-page />
-
-            <x-datatable.bulk.dropdown>
-                <div class="dropdown-menu dropdown-menu-end datatable-dropdown">
-                    <button data-bs-toggle="modal" data-bs-target="#delete-confirmation" class="dropdown-item"
-                        type="button">
-                        <i class="las la-trash me-3"></i>
-
-                        <span>Hapus</span>
-                    </button>
-                </div>
-            </x-datatable.bulk.dropdown>
-
-            <button wire:click="muatUlang" class="btn py-1 ms-2"><span class="las la-redo-alt fs-1"></span></button>
         </div>
     </div>
 
@@ -133,9 +132,9 @@
 
                             <td>{{ strtoupper($row->day_name ?? '-') }}</td>
 
-                            <td>{{ $row->start_time->format('H:i') ?? '-' }}</td>
+                            <td>{{ $row->start_time ?? '-' }}</td>
 
-                            <td>{{ $row->end_time->format('H:i') ?? '-' }}</td>
+                            <td>{{ $row->end_time ?? '-' }}</td>
 
                             <td>{{ strtoupper($row->subject_study->name_subject ?? '-') }}</td>
 

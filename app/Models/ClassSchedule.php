@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -42,5 +43,13 @@ class ClassSchedule extends Model
     public function subject_study()
     {
         return $this->belongsTo(SubjectStudy::class)->withDefault();
+    }
+
+    public function getStartTimeAttribute($value){
+        return Carbon::parse($value)->format('H:i');
+    }
+
+    public function getEndTimeAttribute($value){
+        return Carbon::parse($value)->format('H:i');
     }
 }

@@ -256,6 +256,12 @@ textarea {
     color: var(--blue-clr);
 }
 
+/* border */
+.open-filter {
+    background-color: var(--blue-clr-lt) !important;
+    color: var(--blue-clr) !important;
+}
+
 .navbar-nav li::after {
     content: none !important;
     display: none !important;
