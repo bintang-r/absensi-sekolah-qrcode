@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             TeacherTableSeeder::class,
             StudentTableSeeder::class,
             StudentInSchoolSeeder::class,
+            ClassScheduleTableSeeder::class,
         ]);
     }
 }

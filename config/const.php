@@ -7,6 +7,16 @@ return [
         'guru',
     ],
 
+    'name_days' => [
+        'senin',
+        'selasa',
+        'rabu',
+        'kami',
+        'jumat',
+        'sabtu',
+        'ahad',
+    ],
+
     'sex' => [
         'laki-laki',
         'perempuan',
