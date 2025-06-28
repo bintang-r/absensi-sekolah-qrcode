@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('class_room_id');
+            $table->boolean('in_school')->default(false)->nullable();
             $table->string('full_name');
             $table->string('call_name');
             $table->string('sex');
