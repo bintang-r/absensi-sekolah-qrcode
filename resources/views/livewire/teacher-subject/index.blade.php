@@ -106,7 +106,7 @@
 
                             <td>{{ $row->sex ?? '-' }}</td>
 
-                            <td>
+                            <td style="width: 300px">
                                 <div class="d-flex justify-content-between">
                                     @if ($row->subject_study->name_subject)
                                         <span
