@@ -4,10 +4,10 @@ namespace App\Livewire\Attendance\Qrcode;
 
 use Livewire\Component;
 
-class Index extends Component
+class CheckOut extends Component
 {
     public function render()
     {
-        return view('livewire.attendance.qrcode.index');
+        return view('livewire.attendance.qrcode.check-out');
     }
 }

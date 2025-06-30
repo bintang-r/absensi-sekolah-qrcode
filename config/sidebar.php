@@ -104,8 +104,22 @@ return [
             [
                 'title' => 'Presensi Qrcode',
                 'description' => 'Melihat daftar presensi Qr Code.',
-                'route-name' => 'attendance.qrcode.index',
+                'route-name' => 'attendance.qrcode.check-in',
                 'is-active' => 'attendance.qrcode*',
+                'sub-menus' => [
+                    [
+                        'title' => 'Masuk',
+                        'description' => 'Melihat daftar presensi masuk.',
+                        'route-name' => 'attendance.qrcode.check-in',
+                        'is-active' => 'attendance.qrcode.check-in',
+                    ],
+                    [
+                        'title' => 'Keluar',
+                        'description' => 'Melihat daftar presensi keluar.',
+                        'route-name' => 'attendance.qrcode.check-out',
+                        'is-active' => 'attendance.qrcode.check-out',
+                    ],
+                ],
             ],
         ],
     ],

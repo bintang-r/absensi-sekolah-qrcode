@@ -85,7 +85,8 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
          * qrcode / qr code
          */
         Route::prefix('qrcode')->name('qrcode.')->group(function(){
-            Route::get('/', Qrcode\Index::class)->name('index');
+            Route::get('/masuk', Qrcode\CheckIn::class)->name('check-in');
+            Route::get('/keluar', Qrcode\CheckOut::class)->name('check-out');
         });
     });
 

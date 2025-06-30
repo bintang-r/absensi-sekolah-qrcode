@@ -35,6 +35,8 @@ class DatabaseSeeder extends Seeder
             StudentInSchoolSeeder::class,
             ClassScheduleTableSeeder::class,
             ClassAttendanceTableSeeder::class,
+            CheckInRecordTableSeeder::class,
+            CheckOutRecordTableSeeder::class,
         ]);
     }
 }
