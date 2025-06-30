@@ -78,6 +78,7 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
          */
         Route::prefix('kelas')->name('class.')->group(function(){
             Route::get('/', Class\Index::class)->name('index');
+            Route::get('/detail/{id}', Class\Detail::class)->name('detail');
         });
 
         /**

@@ -98,7 +98,8 @@
                             @endforeach
 
                             <td>
-                                <button class="btn">Lihat Detail Presensi</button>
+                                <a href="{{ route('attendance.class.detail', $row->id) }}" class="btn">Lihat Detail
+                                    Presensi</a>
                             </td>
                         </tr>
                     @empty
