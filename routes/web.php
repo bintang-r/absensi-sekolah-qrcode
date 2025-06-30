@@ -71,6 +71,23 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
         });
     });
 
+    // ATTENDANCE
+    Route::prefix('presensi')->name('attendance.')->middleware('roles:admin')->namespace('Attendance')->group(function(){
+        /**
+         * class / kelas
+         */
+        Route::prefix('kelas')->name('class.')->group(function(){
+            Route::get('/', Class\Index::class)->name('index');
+        });
+
+        /**
+         * qrcode / qr code
+         */
+        Route::prefix('qrcode')->name('qrcode.')->group(function(){
+            Route::get('/', Qrcode\Index::class)->name('index');
+        });
+    });
+
     /**
      * teacher / guru
      */

@@ -88,6 +88,29 @@ return [
     ],
 
     [
+        'title' => 'Presensi',
+        'description' => 'Menampilkan daftar presensi pada aplikasi.',
+        'icon' => 'calendar-check',
+        'route-name' => 'attendance.class.index',
+        'is-active' => 'attendance*',
+        'roles' => ['admin'],
+        'sub-menus' => [
+            [
+                'title' => 'Presensi Kelas',
+                'description' => 'Melihat daftar presensi kelas.',
+                'route-name' => 'attendance.class.index',
+                'is-active' => 'attendance.class*',
+            ],
+            [
+                'title' => 'Presensi Qrcode',
+                'description' => 'Melihat daftar presensi Qr Code.',
+                'route-name' => 'attendance.qrcode.index',
+                'is-active' => 'attendance.qrcode*',
+            ],
+        ],
+    ],
+
+    [
         'title' => 'Pengaturan',
         'description' => 'Menampilkan pengaturan aplikasi.',
         'icon' => 'cog',

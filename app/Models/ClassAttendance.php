@@ -27,6 +27,10 @@ class ClassAttendance extends Model
         'name_material' => 'string',
     ];
 
+    public function student_attendances(){
+        return $this->hasMany(StudentAttendance::class,'class_attendance_id','id');
+    }
+
     public function class_room(){
         return $this->belongsTo(ClassRoom::class,'class_room_id','id')->withDefault();
     }

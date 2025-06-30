@@ -22,6 +22,10 @@ class ClassRoom extends Model
         'updated_at' => 'datetime',
     ];
 
+    public function students(){
+        return $this->hasMany(Student::class,'class_room_id','id');
+    }
+
     public function class_advisor(){
         return $this->hasOne(ClassAdvisor::class,'class_room_id','id')->withDefault();
     }
