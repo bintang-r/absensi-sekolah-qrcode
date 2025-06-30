@@ -37,6 +37,10 @@ class Teacher extends Model
         return $this->belongsTo(SubjectStudy::class,'subject_study_id','id')->withDefault();
     }
 
+    public function class_schedules(){
+        return $this->hasMany(ClassSchedule::class,'teacher_id','id');
+    }
+
     public function user(){
         return $this->belongsTo(User::class,'user_id','id')->withDefault();
     }

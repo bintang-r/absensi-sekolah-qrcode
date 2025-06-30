@@ -32,7 +32,7 @@ class ClassSchedule extends Model
 
     public function class_room()
     {
-        return $this->belongsTo(ClassRoom::class)->withDefault();
+        return $this->belongsTo(ClassRoom::class,'class_room_id','id')->withDefault();
     }
 
     public function teacher()

@@ -36,6 +36,10 @@ class Student extends Model
         'birth_date' => 'date',
     ];
 
+    public function student_attendances(){
+        return $this->hasMany(StudentAttendance::class,'student_id','id');
+    }
+
     public function class_room(){
         return $this->belongsTo(ClassRoom::class,'class_room_id','id')->withDefault();
     }

@@ -7,6 +7,13 @@ return [
         'guru',
     ],
 
+    'attendance_status' => [
+        'hadir',
+        'alpa',
+        'izin',
+        'sakit',
+    ],
+
     'name_days' => [
         'senin',
         'selasa',
