@@ -21,4 +21,8 @@ class ClassRoom extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    public function class_advisor(){
+        return $this->hasOne(ClassAdvisor::class,'class_room_id','id')->withDefault();
+    }
 }

@@ -62,6 +62,13 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
         Route::prefix('mata-pelajaran')->name('subject-study.')->middleware('roles:admin')->group(function(){
             Route::get('/', SubjectStudy\Index::class)->name('index');
         });
+
+        /**
+         *  class advisor / wali kelas
+         */
+        Route::prefix('wali-kelas')->name('advisor-class.')->middleware('roles:admin')->group(function(){
+            Route::get('/', ClassAdvisor\Index::class)->name('index');
+        });
     });
 
     /**
