@@ -31,10 +31,10 @@ class CheckInRecord extends Model
     }
 
     public function getCheckInTimeAttribute($value){
-        return $value->format('H:i');
+        return Carbon::parse($value)->format('H:i');
     }
 
     public function getAttendanceDateAttribute($value){
-        return $value->format('d/m/Y');
+        return Carbon::parse($value)->format('d/m/Y');
     }
 }
