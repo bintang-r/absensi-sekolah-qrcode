@@ -37,12 +37,12 @@ class ClassSchedule extends Model
 
     public function teacher()
     {
-        return $this->belongsTo(Teacher::class)->withDefault();
+        return $this->belongsTo(Teacher::class,'teacher_id','id')->withDefault();
     }
 
     public function subject_study()
     {
-        return $this->belongsTo(SubjectStudy::class)->withDefault();
+        return $this->belongsTo(SubjectStudy::class,'subject_study_id','id')->withDefault();
     }
 
     public function getStartTimeAttribute($value){

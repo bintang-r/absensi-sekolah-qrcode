@@ -71,7 +71,7 @@ class Index extends Component
             ->when($this->filters['search'], function ($query, $search) {
             $query->whereHas('class_room', function($query) use ($search){
                 $query->where('name_class', 'LIKE', "%$search%");
-            })->orWhereHas('teacher_name', function($query) use ($search){
+            })->orWhereHas('teacher', function($query) use ($search){
                 $query->where('name', 'LIKE', "$search");
             })->orWhereHas('subject_study', function($query) use ($search){
                 $query->where('name_subject', 'LIKE', "$search");

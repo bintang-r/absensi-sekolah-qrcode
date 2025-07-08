@@ -42,7 +42,7 @@
             <div class="row">
                 <div class="col-12 col-lg-6">
                     <x-form.select wire:model.live="filters.class_room" name="filters.class_room" label="Ruang Kelas">
-                        <option value="">- pilih ruang kelas -</option>
+                        <option value="">SEMUA KELAS</option>
                         @foreach ($this->class_rooms as $class_room)
                             <option wire:key="{{ $class_room->id }}" value="{{ $class_room->id }}">
                                 {{ $class_room->name_class }}</option>
@@ -56,7 +56,7 @@
                 <div class="col-12 col-lg-6">
                     <x-form.select wire:model.live="filters.subject_study" name="filters.subject_study"
                         label="Mata Pelajaran">
-                        <option value="">- pilih mata pelajaran -</option>
+                        <option value="">SEMUA MAPEL</option>
                         @foreach ($this->subject_studies as $subject_study)
                             <option wire:key="{{ $subject_study->id }}" value="{{ $subject_study->id }}">
                                 {{ strtoupper($subject_study->name_subject) }}</option>
