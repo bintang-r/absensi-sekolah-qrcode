@@ -8,6 +8,7 @@
  *  *  @author Muhammad Bintang Powered By Ryoogen Media
  */
 
+use App\Models\WhatsappConfig;
 use Illuminate\Support\Facades\Cache;
 
 /**
@@ -68,6 +69,23 @@ if (!function_exists('is_online')) {
     function is_online($id)
     {
         return Cache::has('user-is-online-' . $id) ? true : false;
+    }
+}
+
+/**
+ * Mengambil nilai whatsapp broadcast
+ *
+ * @return array (url, port, phone_number)
+ */
+if(!function_exists('base_whatsapp')){
+    function base_whatsapp(){
+        $whatsappConfig = WhatsappConfig::select('url', 'port', 'phone_number')->first();
+
+        return [
+            "url" => $whatsappConfig->whatsapp_url ?? null,
+            "port" => $whatsappConfig->whatsapp_port ?? null,
+            "phone_number" => $whatsappConfig->phone_number ?? null,
+        ];
     }
 }
 
