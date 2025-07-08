@@ -84,4 +84,11 @@ return [
     ],
 
     'auto_delete_file' => env('AUTO_DELETE_FILE', false),
+
+    'periods' => [
+        'daily',
+        'weekly',
+        'monthly',
+        'yearly',
+    ],
 ];
