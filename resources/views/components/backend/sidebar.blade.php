@@ -32,7 +32,11 @@
                                 <a class="nav-link" href="{{ route($item['route-name']) }}"
                                     title="{{ $item['description'] }}">
                                     <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                        <h2 class="las la-{{ $item['icon'] }}"></h2>
+                                        @if (!isset($item['brand_icon']))
+                                            <h2 class="las la-{{ $item['icon'] }} fs-2"></h2>
+                                        @else
+                                            <h2 class="lab la-{{ $item['icon'] }} fs-2"></h2>
+                                        @endif
                                     </span>
 
                                     <span class="nav-link-title">
@@ -47,7 +51,11 @@
                                     data-bs-toggle="dropdown" role="button" aria-expanded="false"
                                     title="{{ $item['description'] }}">
                                     <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                        <h2 class="las la-{{ $item['icon'] }}"></h2>
+                                        @if (!isset($item['brand_icon']))
+                                            <h2 class="las la-{{ $item['icon'] }} fs-2"></h2>
+                                        @else
+                                            <h2 class="lab la-{{ $item['icon'] }} fs-2"></h2>
+                                        @endif
                                     </span>
 
                                     <span class="nav-link-title">

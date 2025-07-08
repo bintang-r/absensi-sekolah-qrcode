@@ -131,6 +131,13 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
         ->middleware('roles:admin,siswa,guru');
 
     /**
+     * whatsapp broadcast
+     */
+    Route::prefix('whatsapp-broadcast')->name('whatsapp-broadcast.')->middleware('roles:admin')->group(function(){
+        Route::get('/', WhatsappBroadcast\Index::class)->name('index');
+    });
+
+    /**
      * setting
      */
     Route::prefix('pengaturan')->name('setting.')->middleware('roles:admin,siswa,guru')->namespace('Setting')->group(function () {

@@ -88,6 +88,16 @@ return [
     ],
 
     [
+        'title' => 'Whatsapp Broadcast',
+        'icon' => 'whatsapp',
+        'brand_icon' => true,
+        'route-name' => 'whatsapp-broadcast.index',
+        'is-active' => 'whatsapp-broadcast*',
+        'description' => 'Pengaturan whatsapp broadcast.',
+        'roles' => ['admin'],
+    ],
+
+    [
         'title' => 'Presensi',
         'description' => 'Menampilkan daftar presensi pada aplikasi.',
         'icon' => 'calendar-check',
