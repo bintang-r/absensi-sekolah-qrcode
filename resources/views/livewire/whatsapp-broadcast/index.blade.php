@@ -66,6 +66,8 @@
 
     <x-slot name="pagePretitle">Atur Whatsapp Broadcast</x-slot>
 
+    <x-alert/>
+
     <div class="row">
         <div class="col-lg-6 col-12">
             <div class="card mb-3">

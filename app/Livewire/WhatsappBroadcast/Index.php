@@ -92,10 +92,10 @@ class Index extends Component
     public function testSendText(){
         $whatsappBroadcast = new WhatsappBroadcast;
         $configWhatsapp = base_whatsapp();
-        $phoneNumber = $configWhatsapp['phone_number'];
+        $phoneNumber = format_number_indonesia($configWhatsapp['phone_number']);
 
         try{
-            $whatsappBroadcast->sendText($phoneNumber, "Pesan berhasil di kirim dari server kami");
+            $whatsappBroadcast->sendText($phoneNumber, "Whatsapp broadcast berhasil terkirim...");
         }catch(Exception $e){
             logger()->error(
                 '[get send text] ' .
@@ -151,7 +151,7 @@ class Index extends Component
         try{
             DB::beginTransaction();
 
-            $whatsappConfig = WhatsappConfig::find($this->agencyId);
+            $whatsappConfig = WhatsappConfig::find($this->whatsappConfigId);
 
             if($whatsappConfig){
                 $whatsappConfig->update([
@@ -184,16 +184,16 @@ class Index extends Component
                 'detail' => "gagal menyunting whatsapp broadcast.",
             ]);
 
-            return redirect()->route('setting.whatsapp');
+            return redirect()->route('whatsapp-broadcast.index');
         }
 
         session()->flash('alert', [
-            'type' => 'danger',
-            'message' => 'Gagal',
+            'type' => 'success',
+            'message' => 'Berhasil',
             'detail' => "berhasil menyunting whatsapp broadcast.",
         ]);
 
-        return redirect()->route('setting.whatsapp');
+        return redirect()->route('whatsapp-broadcast.index');
     }
 
     public function mount(){

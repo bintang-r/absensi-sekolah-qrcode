@@ -89,6 +89,34 @@ if(!function_exists('base_whatsapp')){
     }
 }
 
+
+/**
+ * Mengubah nomor ponsel menjadi awalan 62
+ *
+ * @param string $nomorPonsel
+ * @return string Nomor ponsel dengan awalan 62
+ */
+if (!function_exists('format_number_indonesia')) {
+    function format_number_indonesia(string $nomorPonsel): string
+    {
+        // Hapus spasi, tanda +, tanda strip, atau titik
+        $nomor = preg_replace('/[^0-9]/', '', $nomorPonsel);
+
+        // Jika sudah diawali 62, kembalikan langsung
+        if (strpos($nomor, '62') === 0) {
+            return $nomor;
+        }
+
+        // Jika diawali 0, ganti jadi 62
+        if (strpos($nomor, '0') === 0) {
+            return '62' . substr($nomor, 1);
+        }
+
+        // Jika tidak diawali 62 atau 0, kembalikan apa adanya
+        return $nomor;
+    }
+}
+
 /**
  * Filter user showing
  *
