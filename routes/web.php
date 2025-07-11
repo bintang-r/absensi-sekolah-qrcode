@@ -129,6 +129,11 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
         Route::get('/', ScanQr\Index::class)->name('index');
     });
 
+    /** teacher schedule / jadwal mengajar dosen */
+    Route::prefix('jadwal-mengajar')->name('schedule-teacher.')->middleware('roles:guru')->group(function(){
+        Route::get('/', TeacherSchedule\Index::class)->name('index');
+    });
+
     /**
      * beranda / home
      */

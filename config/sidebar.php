@@ -7,8 +7,21 @@ return [
         'route-name' => 'home',
         'is-active' => 'home',
         'description' => 'Untuk melihat ringkasan aplikasi.',
-        'roles' => ['admin', 'user'],
+        'roles' => ['admin', 'operator','guru','siswa'],
     ],
+
+    // GURU
+
+    [
+        'title' => 'Jadwal Mengajar',
+        'icon' => 'clock',
+        'route-name' => 'schedule-teacher.index',
+        'is-active' => 'schedule-teacher*',
+        'description' => 'Untuk melihat jadwal mengajar anda.',
+        'roles' => ['guru'],
+    ],
+
+    // ADMIN
 
     [
         'title' => 'Master',
@@ -149,7 +162,7 @@ return [
         'icon' => 'cog',
         'route-name' => 'setting.profile.index',
         'is-active' => 'setting*',
-        'roles' => ['admin', 'user'],
+        'roles' => ['admin', 'guru','operator','siswa'],
         'sub-menus' => [
             [
                 'title' => 'Profil',

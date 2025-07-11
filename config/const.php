@@ -19,7 +19,7 @@ return [
         'senin',
         'selasa',
         'rabu',
-        'kami',
+        'kamis',
         'jumat',
         'sabtu',
         'ahad',
