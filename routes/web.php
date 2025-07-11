@@ -124,6 +124,11 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
         Route::get('/', Qrcode\Index::class)->name('index');
     });
 
+    /** scan qr / camera */
+    Route::prefix('scan-qr')->name('scan-qr.')->middleware('roles:operator,admin')->group(function(){
+        Route::get('/', ScanQr\Index::class)->name('index');
+    });
+
     /**
      * beranda / home
      */

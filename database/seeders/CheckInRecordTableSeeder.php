@@ -51,14 +51,14 @@ class CheckInRecordTableSeeder extends Seeder
         }
 
         // Hari ini (20 data)
-        $today = now()->format('Y-m-d');
-        foreach (range(1, 20) as $_) {
-            CheckInRecord::create([
-                'student_id'      => $faker->randomElement($studentIds),
-                'check_in_time'   => $faker->dateTimeBetween($today . ' 06:00:00', $today . ' 09:00:00'),
-                'attendance_date' => $today,
-                'remarks'         => $faker->optional()->sentence,
-            ]);
-        }
+        // $today = now()->format('Y-m-d');
+        // foreach (range(1, 20) as $_) {
+        //     CheckInRecord::create([
+        //         'student_id'      => $faker->randomElement($studentIds),
+        //         'check_in_time'   => $faker->dateTimeBetween($today . ' 06:00:00', $today . ' 09:00:00'),
+        //         'attendance_date' => $today,
+        //         'remarks'         => $faker->optional()->sentence,
+        //     ]);
+        // }
     }
 }

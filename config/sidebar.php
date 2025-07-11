@@ -88,6 +88,15 @@ return [
     ],
 
     [
+        'title' => 'Scan Qr',
+        'icon' => 'clock',
+        'route-name' => 'scan-qr.index',
+        'is-active' => 'scan-qr*',
+        'description' => 'Untuk Scan Qr Code',
+        'roles' => ['admin','operator'],
+    ],
+
+    [
         'title' => 'Whatsapp Broadcast',
         'icon' => 'whatsapp',
         'brand_icon' => true,
