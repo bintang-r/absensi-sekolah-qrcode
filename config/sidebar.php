@@ -21,6 +21,15 @@ return [
         'roles' => ['guru'],
     ],
 
+    [
+        'title' => 'Presensi Kelas',
+        'icon' => 'address-card',
+        'route-name' => 'class-attendance.index',
+        'is-active' => 'class-attendance*',
+        'description' => 'Untuk melakukan presensi kelas.',
+        'roles' => ['guru'],
+    ],
+
     // ADMIN
 
     [

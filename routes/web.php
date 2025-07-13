@@ -141,6 +141,16 @@ Route::middleware('auth', 'verified', 'force.logout')->namespace('App\Livewire')
         ->middleware('roles:admin,siswa,guru');
 
     /**
+     * class attendance / presensi kelas
+     */
+    Route::prefix('presensi-kelas')->name('class-attendance.')->middleware('roles:guru')->group(function(){
+        Route::get('/', ClassAttendance\Index::class)->name('index');
+        Route::get('/detail/{id}', ClassAttendance\Detail::class)->name('detail');
+        Route::get('/create/{id}', ClassAttendance\Create::class)->name('create');
+        Route::get('/edit/{scheduleId}/{classAttendanceId}', ClassAttendance\Edit::class)->name('edit');
+    });
+
+    /**
      * whatsapp broadcast
      */
     Route::prefix('whatsapp-broadcast')->name('whatsapp-broadcast.')->middleware('roles:admin')->group(function(){
