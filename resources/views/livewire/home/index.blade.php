@@ -12,7 +12,7 @@
     @endif
 
     @if (auth()->user()->role == 'guru')
-        <livewire:home.teacher-home />
+        {{-- <livewire:home.teacher-home /> --}}
     @endif
 
     <div class="card mt-4" wire:poll.30000ms>
