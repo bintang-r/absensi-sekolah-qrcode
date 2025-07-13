@@ -1,4 +1,6 @@
 <div>
+    <x-alert />
+
     <div class="row">
         <div class="col-12">
             <div class="card bg-blue text-white mb-3">

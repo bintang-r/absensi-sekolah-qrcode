@@ -31,6 +31,10 @@
                                 @case('yearly')
                                     10 Tahun
                                 @break
+
+                                @default
+                                    Semua
+                                @break
                             @endswitch
                         @else
                             Semua

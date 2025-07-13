@@ -5,8 +5,14 @@
 
     <x-slot name="pageTitle">Beranda</x-slot>
 
+    <x-alert />
+
     @if (auth()->user()->role == 'admin')
         <livewire:home.admin-home />
+    @endif
+
+    @if (auth()->user()->role == 'guru')
+        <livewire:home.teacher-home />
     @endif
 
     <div class="card mt-4" wire:poll.30000ms>
