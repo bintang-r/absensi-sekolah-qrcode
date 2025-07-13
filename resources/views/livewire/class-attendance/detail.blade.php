@@ -13,13 +13,69 @@
 
     <x-modal.delete-confirmation />
 
-    <div class="row mb-3 align-items-center justify-content-between">
-        <div class="col-12 col-lg-6 d-flex align-self-center">
-            <div>
-                <x-datatable.search placeholder="Cari nama materi..." />
+    <x-modal :show="$show" size="md">
+        <div class="modal-header">
+            <h5 class="modal-title">Bukti Presensi</h5>
+            <button wire:click='closeModal' type="button" class="btn-close" data-bs-dismiss="modal"
+                aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+            <div class="d-flex justify-content-center">
+                <img src="{{ $this->pictureEvidence }}" alt="bukti-presensi">
             </div>
         </div>
-        <div class="col-auto ms-auto d-flex mt-lg-0 mt-3">
+
+        <div class="modal-footer">
+            <div class="btn-list justify-content-end">
+                <button wire:click="closeModal" type="reset" class="btn btn-blue">Tutup</button>
+            </div>
+        </div>
+    </x-modal>
+
+    <div class="card mb-3">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-6 col-12 mb-lg-0 mb-2 align-self-center">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td>Nama Mata Pelajaran</td>
+                            <td>{{ $classSchedule->subject_study->name_subject ?? '-' }}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Hari</td>
+                            <td>{{ strtoupper($classSchedule->day_name ?? '-') }}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Waktu Pelajaran</td>
+                            <td>{{ $classSchedule->start_time ?? '-' }} - {{ $classSchedule->end_time ?? '-' }}</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="col-lg-6 col-12 align-self-center">
+                    <div class="card bg-blue">
+                        <div class="card-body">
+                            <div class="d-flex flex-column">
+                                <p class="text-white" style="font-size: 18px; font-weight: 520">Jumlah Siswa</p>
+                                <h1 class="text-white" style="font-size: 30px">
+                                    {{ $this->students->count() ?? 0 }}
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3 align-items-center justify-content-between">
+        <div class="col-12 col-lg-6 d-flex align-self-center">
+            <x-datatable.search class="w-100" placeholder="Cari nama materi..." />
+        </div>
+        <div class="col-lg-6 col-12 ms-auto d-flex mt-lg-0 mt-3">
             <x-datatable.bulk.dropdown>
                 <div class="dropdown-menu dropdown-menu-end datatable-dropdown">
                     <button data-bs-toggle="modal" data-bs-target="#delete-confirmation" class="dropdown-item"
@@ -32,8 +88,8 @@
             </x-datatable.bulk.dropdown>
 
             <a href="{{ route('class-attendance.create', $this->classScheduleId) }}" class="btn btn-blue ms-1"><span
-                    class="las la-plus me-1"></span> Tambah Presensi
-                Pertemuan</a>
+                    class="las la-plus me-lg-1 me-0"></span> <span class="d-lg-inline d-none">Tambah Presensi
+                    Pertemuan</span></a>
         </div>
     </div>
 
@@ -99,17 +155,21 @@
 
                             <td>{{ $row->explanation_material ?? '-' }}</td>
 
-                            <td>{{ $row->student_attendances->where('status_attendance', 'hadir')->count() ?? 0 }}</td>
-
-                            <td>{{ $row->student_attendances->where('status_attendance', 'alpa')->count() ?? 0 }}</td>
-
-                            <td>{{ $row->student_attendances->where('status_attendance', 'izin')->count() ?? 0 }}</td>
-
-                            <td>{{ $row->student_attendances->where('status_attendance', 'sakit')->count() ?? 0 }}</td>
+                            <td class="text-center">
+                                {{ $row->student_attendances->where('status_attendance', 'hadir')->count() ?? 0 }}</td>
 
                             <td class="text-center">
-                                <button type="button" class="btn btn-sm btn-black"><span
-                                        class="las la-camera fs-1"></span></button>
+                                {{ $row->student_attendances->where('status_attendance', 'alpa')->count() ?? 0 }}</td>
+
+                            <td class="text-center">
+                                {{ $row->student_attendances->where('status_attendance', 'izin')->count() ?? 0 }}</td>
+
+                            <td class="text-center">
+                                {{ $row->student_attendances->where('status_attendance', 'sakit')->count() ?? 0 }}</td>
+
+                            <td class="text-center">
+                                <button wire:click="openModal({{ $row->id }})" type="button"
+                                    class="btn btn-sm btn-black"><span class="las la-camera fs-1"></span></button>
                             </td>
 
                             <td>
@@ -139,6 +199,12 @@
             <h2 class="page-title">
                 Detail Kehadiran Siswa
             </h2>
+        </div>
+    </div>
+
+    <div class="row mb-3 align-items-center justify-content-between">
+        <div class="col-12 col-lg-6 d-flex align-self-center">
+            <x-datatable.search class="w-100" placeholder="Cari nama / nis siswa..." var="search_student" />
         </div>
     </div>
 

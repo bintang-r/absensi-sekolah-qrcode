@@ -3,6 +3,6 @@
         <i class="las la-search"></i>
     </span>
 
-    <input wire:model.live="filters.search" type="search" class="form-control"
+    <input wire:model.live="filters.{{ $var ?? 'search' }}" type="{{ $var ?? 'search' }}" class="form-control"
         placeholder="{{ $placeholder ?? 'Cari...' }}" autofocus>
 </div>

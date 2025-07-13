@@ -38,4 +38,10 @@ class ClassAttendance extends Model
     public function class_schedule(){
         return $this->belongsTo(ClassSchedule::class,'class_schedule_id','id')->withDefault();
     }
+
+    public function pictureEvidenceUrl(){
+        return $this->picture_evidence
+            ? asset('storage/' . $this->picture_evidence)
+            : asset('static/ryoogen/default/NO-IMAGE.png');
+    }
 }
