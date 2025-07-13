@@ -46,7 +46,7 @@ class TeacherTableSeeder extends Seeder
                 'email'             => $teacher['email'],
                 'email_verified_at' => $teacher['email_verified_at'],
                 'password'          => $teacher['password'],
-                'role'              => $teacher['email'],
+                'role'              => $teacher['role'],
             ]);
 
             Teacher::create([
