@@ -72,20 +72,16 @@ class TeacherHome extends Component
             $property = 'total' . ucfirst($status);
 
             $query = StudentAttendance::query()
-                ->when($this->teacherSchedule, function($query, $schedule){
-                    $query->whereHas('class_attendance', function($query) use ($schedule){
-                        $query->whereHas('class_schedule', function($q) use ($schedule){
-                            $q->where('id', $schedule);
-                        });
-                    });
-                })
-
                 ->where('status_attendance', $status)
-                ->whereHas('class_attendance', function ($query) {
-                    $query->whereHas('class_schedule', function ($q) {
-                        $q->where('teacher_id', $this->teacherId);
-                    });
+                ->whereHas('class_attendance.class_schedule', function ($q) {
+                    $q->where('teacher_id', $this->teacherId);
                 });
+
+            if ($this->teacherSchedule) {
+                $query->whereHas('class_attendance.class_schedule', function ($q) {
+                    $q->where('id', $this->teacherSchedule);
+                });
+            }
 
             $this->{$property} = HomeChart::TOTAL_DATA($query, $this->period);
         }
